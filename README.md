@@ -1,5 +1,6 @@
 #Thanks for GraphDTA ( https://github.com/thinng/GraphDTA)
 # 1 create data:
+python create_csv.py
 python create_data.py
 
 This returns kiba_train.csv, kiba_test.csv, davis_train.csv, and davis_test.csv, saved in data/ folder. 
