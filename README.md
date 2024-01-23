@@ -1,4 +1,4 @@
-#Thanks for DeepDTA (https://github.com/hkmztrk/DeepDTA)
+#Thanks for GraphDTA ( https://github.com/thinng/GraphDTA)
 # 1 create data:
 python create_data.py
 
