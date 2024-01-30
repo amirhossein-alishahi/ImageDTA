@@ -5,12 +5,6 @@ import torch.nn.functional as F
 import torchvision
 from torch.nn import Sequential, Linear, ReLU
 import torchvision.models as models
-
-import transformerDecoder
-
-from create_data import dileImage
-from layer import LinkAttention
-
 # ImageDTA  model
 class ImageNet(torch.nn.Module):
 
