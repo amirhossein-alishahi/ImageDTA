@@ -7,7 +7,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 import torchvision.models as models
 
-from create_data import loadTest, loadTrain, Data, collate_fn, dileImage
+from create_data import loadTest, loadTrain, Data, collate_fn
 from functionCi import *
 from model import ImageNet
 # training function at each epoch
