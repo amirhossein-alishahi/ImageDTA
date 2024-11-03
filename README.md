@@ -12,8 +12,3 @@ python training.py 0 0
 where the first argument is for the index of the datasets, 0/1 for 'davis' or 'kiba', respectively;
 and the second argument is for the index of the cuda, 0/1 for 'cuda:0' or 'cuda:1', respectively.
 
-## 3. Train a prediction model with validation 
-
-python training_validation.py 0 0
-where the first argument is for the index of the datasets, 0/1 for 'davis' or 'kiba', respectively;
-and the second argument is for the index of the cuda, 0/1 for 'cuda:0' or 'cuda:1', respectively.
