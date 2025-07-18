@@ -33,12 +33,22 @@ class ImageNet(torch.nn.Module):
         self.conv_xt_3 = nn.Conv1d(in_channels=n_filters*2, out_channels=n_filters * 3, kernel_size=8)
         self.fc1_xt = nn.Linear(96 * 107, output_dim)
 
-        #BiLSTM
-        self.lstm = nn.LSTM(input_size=888,hidden_size=128,num_layers=2,dropout=0.3,batch_first=True,bidirectional=True)
-
+        # BiGRU for sequence modeling
+        # hidden_size is set to 64 so that the bidirectional output has
+        # 128 features, matching the previous architecture.
+        self.gru = nn.GRU(
+            input_size=888,
+            hidden_size=64,
+            num_layers=2,
+            dropout=0.3,
+            batch_first=True,
+            bidirectional=True,
+        )
 
         # FC layers
-        self.fc1 = nn.Linear(1144, 1024)
+        # Concatenation of drug (760), protein (128) and GRU output (128)
+        # yields a feature vector of length 1016
+        self.fc1 = nn.Linear(1016, 1024)
         self.fc2 = nn.Linear(1024, 256)
         self.out = nn.Linear(256, n_output)
 
@@ -85,11 +95,13 @@ class ImageNet(torch.nn.Module):
         #Second Concatenation layer
         xc = torch.cat((xd, xt), 1)
 
-        #BiLSTM
-        out, _ = self.lstm(xc)
+        # BiGRU expects input of shape (batch, seq_len, input_size). The feature
+        # vector is treated as a sequence of length 1.
+        gru_out, _ = self.gru(xc.unsqueeze(1))
+        gru_out = gru_out.squeeze(1)
 
         # Third Concatenation layer
-        out = torch.cat((xd, xt, out), 1)
+        out = torch.cat((xd, xt, gru_out), 1)
         # add some dense layers
         xc = self.fc1(out)
         xc = self.relu(xc)
