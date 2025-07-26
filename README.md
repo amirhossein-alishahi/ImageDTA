@@ -1,4 +1,4 @@
-#Both steps happened in imageDTA_V2.ipynb
+# Both steps happened in imageDTA_V2.ipynb
 # 1 Create data:
 python create_csv.py
 
