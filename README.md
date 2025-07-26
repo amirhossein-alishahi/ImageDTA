@@ -1,5 +1,5 @@
-#Thanks for GraphDTA ( https://github.com/thinng/GraphDTA)
-# 1 create data:
+#Both steps happened in imageDTA_V2.ipynb
+# 1 Create data:
 python create_csv.py
 
 This returns kiba_train.csv, kiba_test.csv, davis_train.csv, and davis_test.csv, saved in data/ folder. 
